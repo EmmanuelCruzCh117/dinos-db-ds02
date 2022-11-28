@@ -1,0 +1,44 @@
+
+<img class="d-block mx-auto mb-4" src="/assets/images/jp.png" alt="" width="200px" height="">
+<div class="container">
+    <!-- Mensaje por si no hay empleados -->
+    <p *ngIf="Dinos.length <= 0" class="text-center">No hay dinos registrados</p>
+    <!-- Lista de empleados -->
+
+    <table class="table table-bordered table-warning">
+        <thead class="table-success">
+            <tr class="table-danger">
+                <th scope="col">Nombre</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Género</th>
+                <th scope="col">Peso (kilos)</th>
+                <th scope="col">Tamaño (metros)</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dino of Dinos; let i = index">
+                <td>{{ dino.nombre }}</td>
+                <td>{{ dino.tipo }}</td>
+                <td>{{ dino.genero }}</td>
+                <td>{{ dino.peso }} kg</td>
+                <td>{{ dino.tamanio }} m</td>
+                <td>
+                    <img src="{{ dino.img }}" alt="Imagen" width="200px">
+                </td>
+                <td>
+                    <span [routerLink]="['/editar-dino', dino._id]">
+                        <button type="button" class="btn btn-warning btn-sm">Editar</button>
+                    </span>
+                </td>
+                <td>
+                    <span (click)="eliminarDino(dino, i)">
+                        <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

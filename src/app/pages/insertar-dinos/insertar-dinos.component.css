@@ -1,0 +1,12 @@
+@font-face{
+    font-family: jurassicPark;
+    src: url(/src/assets/fonts/Jurassic_Park.ttf);
+}
+
+#jurassic{
+    font-family: jurassicPark;
+}
+
+body{
+    font-family: jurassicPark;
+}

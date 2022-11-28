@@ -1,0 +1,96 @@
+<img class="d-block mx-auto mb-4" src="/assets/images/jp.png" alt="" width="200px" height="">
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <h2 >Editar Dinosaurio</h2>
+        <div class="card-body">
+            <form [formGroup]="editarForm" (ngSubmit)="onSubmit()">
+               <div class="form-group">
+                    <label for="nombre">Nombre: </label>
+                    <input type="text" class="form-control" formControlName="nombre" placeholder="Ingresa el nombre"/>
+                    <div style="color: red;" 
+                         *ngIf="enviado && myForm['nombre'].errors?.['required']">
+                        Este campo es obligatorio
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="tipo">Tipo: </label>
+                    <select class="custom-select form-control" 
+                            formControlName="tipo"
+                            (change)="actualizarTipoDino($event.target.value)">
+                        <option value="">selecciona el tipo...</option>
+                        <option *ngFor="let tipo of tipoDino" 
+                                value="{{ tipo }}">
+                            {{ tipo }} 
+                        </option>
+                    </select>
+                    <div style="color: red;" 
+                        *ngIf="enviado && myForm['tipo'].errors?.['required']">
+                        Debes seleccionar un tipo
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="genero">Género: </label>
+                    <select class="custom-select form-control" 
+                            formControlName="genero"
+                            (change)="actualizarGeneroDino($event.target.value)">
+                        <option value="">selecciona el género...</option>
+                        <option *ngFor="let genero of generoDino" 
+                                value="{{ genero }}">
+                            {{ genero }}    
+                        </option>
+                    </select>
+                    <div style="color: red;" 
+                        *ngIf="enviado && myForm['genero'].errors?.['required']">
+                        Debes seleccionar un género
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="peso">Peso (kilos): </label>
+                    <input type="text" class="form-control" formControlName="peso" placeholder="Inserta el peso en kilos"/>
+                    <div style="color: red;" 
+                        *ngIf="enviado && myForm['peso'].errors?.['required']">
+                        Este paso es obligatorio
+                    </div>
+                    <div style="color: red;" 
+                        *ngIf="enviado && myForm['peso'].errors?.['pattern']">
+                        El peso no es válido
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tamanio">Tamaño (metros): </label>
+                    <input type="text" class="form-control" formControlName="tamanio" placeholder="Ingresa el tamaño en metros"/>
+                    <div style="color: red;" 
+                        *ngIf="enviado && myForm['tamanio'].errors?.['required']">
+                        Este paso es obligatorio
+                    </div>
+                    <div style="color: red;" 
+                        *ngIf="enviado && myForm['tamanio'].errors?.['pattern']">
+                        El tamaño no es válido
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="img">Imagen: </label>
+                    <input type="text" class="form-control" formControlName="img" placeholder="Ingresa el link de una imagen"/>
+                    <div style="color: red;" 
+                         *ngIf="enviado && myForm['img'].errors?.['required']">
+                        Este campo es obligatorio
+                    </div>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <button class="btn btn-success btn-lg btn-block" type="submit">
+                        Editar
+                    </button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</div>
+
